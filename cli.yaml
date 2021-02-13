@@ -1,0 +1,10 @@
+name: Rust Cryptography
+version: "0.1"
+about: Very insecure criptographic program, used to study rust and cryptography
+args:
+    - input file:
+        short: i
+        long: input-file
+        value_name: FILE
+        help: path to the file to encrypt. Use - to encrypt from stdin
+        takes_value: true
