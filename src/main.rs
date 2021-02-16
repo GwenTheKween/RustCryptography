@@ -4,7 +4,7 @@ use std::path::PathBuf;
 use std::fs;
 use std::io;
 
-fn prepare_hash(args: clap::ArgMatches){
+fn prepare_hash(args: &clap::ArgMatches){
     println!("so far so good");
 
     println!("{:?}",args.is_present("input"));
@@ -24,7 +24,12 @@ fn main() {
 
     //subcommand processing
     match args.subcommand_name(){
-        Some("hash") => prepare_hash(args),
+        Some("hash") => {
+            match args.subcommand_matches("hash"){
+                Some(sub_args) => prepare_hash(sub_args),
+                None => println!("this should not have happened"),
+            }
+        }
         None => interactive_mode(),
         _ => {
             println!("Incorrect subcommand");
