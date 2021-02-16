@@ -6,6 +6,10 @@
 
 So far, nothing, this is just set up. but we'll be updating the readme as we update the code.
 
+### Implementations being done
+
+SHA256 is being implemented following this explanation: https://qvault.io/2020/07/08/how-sha-2-works-step-by-step-sha-256/
+
 ### Future Plans
 
 We still want to implement the following algorithms:
