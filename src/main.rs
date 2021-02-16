@@ -1,28 +1,34 @@
 extern crate clap;
 use clap::{App, load_yaml};
 use std::path::PathBuf;
+use std::fs;
+use std::io;
+
+fn prepare_hash(args: clap::ArgMatches){
+    println!("so far so good");
+
+    println!("{:?}",args.is_present("input"));
+    //is there a file path given? If not, pass stdin along
+    let input_file_name = args.value_of("input").unwrap();
+
+    let i_file = fs::File::open(input_file_name);
+}
+
+fn interactive_mode(){
+    println!("Interactive mode not yet supported, sorry");
+}
 
 fn main() {
     let yaml = load_yaml!("../cli.yaml");
     let args = App::from_yaml(yaml).get_matches();
 
-    //argv processing
-    let mut wrong = false; //flag to tell if an argument has been misused
-
-    //parse input file
-    let file_arg = args.value_of("input file");
-    let mut ifile = PathBuf::new();
-    match file_arg{
-        None => wrong = true,
-        Some(_) => {
-            ifile = PathBuf::from(file_arg.unwrap());
+    //subcommand processing
+    match args.subcommand_name(){
+        Some("hash") => prepare_hash(args),
+        None => interactive_mode(),
+        _ => {
+            println!("Incorrect subcommand");
+            return;
         }
-    }
-
-    //done parsing arguments, now encrypt
-    if wrong {
-        println!("Usage without command line arguments is not yet supported. Please use command line arguments (-h for help)");
-    }else{
-        println!("the chosen file is {}",file_arg.unwrap());
     }
 }
