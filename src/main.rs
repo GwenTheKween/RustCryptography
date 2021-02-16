@@ -1,17 +1,18 @@
 extern crate clap;
 use clap::{App, load_yaml};
-use std::path::PathBuf;
 use std::fs;
-use std::io;
+
+mod hash;
 
 fn prepare_hash(args: &clap::ArgMatches){
     println!("so far so good");
 
-    println!("{:?}",args.is_present("input"));
     //is there a file path given? If not, pass stdin along
     let input_file_name = args.value_of("input").unwrap();
 
-    let i_file = fs::File::open(input_file_name);
+    //let i_file = fs::File::open(input_file_name);
+    //FOR NOW, ONLY HASH FILE NAME
+    hash::sha256::calculate(input_file_name);
 }
 
 fn interactive_mode(){
