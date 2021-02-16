@@ -8,12 +8,17 @@ So far, nothing, this is just set up. but we'll be updating the readme as we upd
 
 ### Future Plans
 
-We still want to implement the following algorithms:
+We still want to implement the following algorithms for cryptography:
 
 * ECC25519
 * RSA
 * DES
 * Triple DES
+
+We also want to impement the following hashing algorithms:
+
+* SHA-2 library
+* MD5
 
 ### Contributors
 
